@@ -1,0 +1,12 @@
+:root { 
+	--primary: #171010;
+	--secondary: #423F3E;
+	--tertiary: #313030;
+	--background: #171010;
+	--text: white; 
+	--error: #810000;
+	--success: rgb(51, 161, 51);
+	--link: rgb(255, 211, 211);
+	--link-hover: rgb(154, 170, 168);
+	--header: #2e2424;
+}

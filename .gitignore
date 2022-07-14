@@ -1,0 +1,11 @@
+#Dependencies 
+node_modules
+
+#User profiles
+userdata
+
+#SSL certificates
+certs
+
+#Environment variales
+.env

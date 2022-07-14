@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300&family=Roboto+Mono:wght@300&family=Roboto:wght@300&family=Source+Sans+Pro:wght@600&display=swap');
+
+* {
+	font-family: 'Nunito Sans', sans-serif;
+	color: var(--text);
+	-ms-overflow-style: none; 
+	scrollbar-width: none; 
+}
+
+html {
+	background-color: var(--background);
+	font-size: 25px;
+	padding: 20px; 
+}
+
+*::-webkit-scrollbar {
+	display: none;
+}
+
+textarea {
+	padding: 8px;
+	font-size: 20px;
+	height: 175px;
+	background-color: var(--secondary);
+	border-radius: 7px;
+	border: 0px solid; 
+	resize: vertical;
+	box-shadow: inset 0px 0px 5px rgba(0,0,0,0.2);
+}
+
+textarea:focus {
+	outline: none;
+	box-shadow: inset 0px 0px 5px rgba(0,0,0,1);
+}
+
+input {
+	padding: 8px;
+	font-size: 20px;
+	background-color: var(--secondary);
+	min-height: 40px;
+	border-radius: 7px;
+	border: 0px solid;
+	box-shadow: inset 0px 0px 5px rgba(0,0,0,0.2);
+}
+
+input:focus {
+	outline: none;
+	box-shadow: inset 0px 0px 5px rgba(0,0,0,1);
+}
+
+
+button {
+	border-radius: 7px;
+	min-height: 40px;
+	background-color: var(--tertiary);
+	border: 0px solid; 
+}
+
+button:active {
+	box-shadow: inset 0px 0px 3px rgba(0,0,0,1);
+}
+
+a {
+	color: var(--link);
+	text-decoration: none;
+}
+
+a:hover {
+	color: var(--link-hover);
+	text-decoration: underline;
+}

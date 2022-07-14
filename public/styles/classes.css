@@ -1,0 +1,80 @@
+@import "./darkmode.css"  (prefers-color-scheme: dark);
+@import "./lightmode.css" (prefers-color-scheme: light);
+@import "./elements.css";
+
+
+.container {
+	display: flex;
+	flex-direction: column;
+	width: 600px; 
+	margin: auto;
+	align-self: center;
+}
+
+.container > * {
+	margin: 5px;
+}
+
+.divider {
+	width: 98%;
+	margin-top: 10px;
+	border-top: 2px solid var(--secondary) 
+}
+
+.vertical-divider {
+	color: var(--secondary);
+	font-size: 30px;
+}
+
+.output {
+	font-family: monospace; 
+	margin-top: 20px; 
+	background: var(--tertiary); 
+	resize: none;
+	height: 100px;
+}
+
+.header {
+	height: 60px;
+	display: flex;
+	flex-direction: row;
+	background-color: var(--header);
+	border-radius: 7px;
+	padding-left: 20px;
+	margin-bottom: 20px;
+	width: 97%;
+	align-self: center;
+}
+
+.header > * {
+	margin-right: 10px;
+	line-height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.notif-box {
+	opacity: 0; 
+	border-radius: 7px;
+	background-color: var(--error);
+	padding: 8px;
+	height: auto; 
+	width: auto;
+	margin-top: 10px;
+	transition: opacity 0.3s; 
+}
+
+.notif-box.fade {
+	opacity: 1;
+}
+
+.account-options {
+	margin-left: auto;
+	margin-right: 30px;
+	font-size: 20px;
+}
+
+.account-options > * {
+	text-decoration: none;
+}

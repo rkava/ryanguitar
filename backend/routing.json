@@ -1,0 +1,38 @@
+{
+	"views": {
+		"/": "home",
+		"/login": "login",
+		"/admin": "admin",
+		"/profile": "profile",
+		"/password/change": "password",
+		"/password/confirm": "password"
+	},
+	"handlers": {
+		"/api/login": "./handlers/login",
+		"/api/logout": "./handlers/logout",
+
+		"/api/profile/create": "./handlers/profile.create",
+		"/api/profile/update": "./handlers/profile.update",
+		
+		"/api/password/reset":   "./handlers/password.reset", 
+		"/api/password/change":  "./handlers/password.change",
+		"/api/password/request": "./handlers/password.request"
+	},
+	"parameters": {
+		"/admin": [ "auth" ],
+
+		"/api/profile/create": [ "username", "name", "auth" ],
+		"/api/profile/update": [ "username", "message", "auth" ],
+		
+		"/api/password/reset":   [ "username", "auth" ],
+		"/api/password/change":  [ "username", "password" ],
+		"/api/password/request": [ "username", "email" ],
+
+		"/api/login": [ "username", "password" ]
+	},
+	"redirect_logged_in": [
+		"/login",
+		"/password/change",
+		"/password/confirm"
+	]
+}

@@ -1,0 +1,43 @@
+doctype html 
+html(lang='en') 
+	include head.pug
+	script(src="scripts/admin.min.js")
+	body 
+		div(class='container')
+			include topbar.pug
+			span(style='color: gray; font-size: 30px') Admin control panel
+
+
+			h4 Update user profile
+			input(type='text' placeholder='Username' id='username-update')
+
+			textarea(placeholder='Message' id='message-update')
+
+			button(id='submit-update') Submit
+
+			div(class='divider')
+
+
+			h4 Create user profile 
+			input(type='text' placeholder='Username' id='username-create')
+
+			input(type='text' placeholder='Name' id='name-create')
+
+			button(id='submit-create') Submit 
+
+			div(class='divider')
+
+
+			h4 Reset user password 
+			
+			input(type='text' placeholder='Username' id='username-reset')
+			
+			button(id='submit-reset') Submit
+ 
+			div(class='divider')
+
+
+			h4 Output
+				span(id='output-title' style='color: gray; font-size: 20px')
+
+			textarea(id='output' class='output' readonly)

@@ -1,0 +1,10 @@
+doctype html 
+html(lang='en')
+	include head.pug
+	body
+		div(class='container')
+			include topbar.pug
+			if name 
+				h2 Welcome, #{name}!
+			else 
+				h2 Welcome!
