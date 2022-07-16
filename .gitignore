@@ -12,6 +12,3 @@ certs
 
 #Reset tokens
 backend/tokens.json
-
-#Cold session store
-sessions 
