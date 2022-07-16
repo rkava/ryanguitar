@@ -9,3 +9,9 @@ certs
 
 #Environment variales
 .env
+
+#Reset tokens
+backend/tokens.json
+
+#Cold session store
+sessions 

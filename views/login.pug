@@ -1,18 +1,25 @@
 html(lang='en')
-	include head.pug 
-	script(src='/scripts/login.min.js')
+	head
+		title Sign in to your account
+		link( rel="stylesheet", href="/styles/classes.css")
+		script(src='/scripts/login.min.js')
 	body 
 		div(class='container') 
-			include topbar.pug 
+
+			include includes/topbar.pug 
+
 			h4 Sign in 
 
+			span(class='info') 
+				| Get in touch if you'd like me to set up an account for you. 
+
 			input(type='text'     placeholder='Username' id='username-login')
+
 			input(type='password' placeholder='Password' id='password-login')
+			
 			button(id='submit-login') Submit
 
-			a(
-				href="/password/change" 
-				style="font-size: 17px; margin-top: 10px;"
-			) Request password change
+			a(href='/password/change' style='font-size: 17px; margin-top: 10px;') 
+				| Request password change
 
 			div(class="notif-box")

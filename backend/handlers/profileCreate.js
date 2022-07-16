@@ -16,7 +16,7 @@ module.exports = async function( req, res ) {
 
 	if( res.locals.profile.exists ) {
 		return res.status( 400 ).send( 
-			{ status: 400, message: "user already exists" }
+			{ status: 400, message: "User already exists" }
 		)
 	}  
 
@@ -32,10 +32,13 @@ module.exports = async function( req, res ) {
 		email_address: '', 
 		
 		messages: [{ 
-			message: 'Welcome to ryanguitar.uk.<br>' +
-					 'Remember to update your password and enable ' +
-					 'email notifications if you would like to ' +
-					 'know when your profile is updated.',
+			message: `
+			Welcome to my website! Remember to: 	
+			<ul>
+				<li> Change the default password
+				<li> Update your email address
+				<li> Enable email alerts for profile updates
+			</ul>`,
 			date: new Date().toLocaleDateString( 'en-GB' )
 		}]
 	}
@@ -45,7 +48,7 @@ module.exports = async function( req, res ) {
 		await fs.writeFile( res.locals.profile.path, JSON.stringify( data ) )
 
 		return res.status( 200 ).send( 
-			{ status: 200, message: 'profile created successfully' } 
+			{ status: 200, message: 'Profile created successfully' } 
 		)
 
 	} catch( e ) {

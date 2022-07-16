@@ -1,10 +1,17 @@
 doctype html 
 html(lang='en')
-	include head.pug
+	head
+		title Ryan's Guitar Stuff
+		link( rel="stylesheet", href="/styles/classes.css")
 	body
 		div(class='container')
-			include topbar.pug
-			if name 
-				h2 Welcome, #{name}!
-			else 
-				h2 Welcome!
+			include includes/topbar.pug
+			
+			div(class='panel')
+				span
+					| Welcome to Ryan's guitar page! Here students can find: 
+					ul
+						li Personalized feedback after each lesson 
+						li Articles on topics covered in lessons
+						li Video demonstrations with tabs 
+						li Chord diagrams and progressions

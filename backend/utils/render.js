@@ -1,30 +1,21 @@
 const pug 		= require( 'pug' ) 
-const redirects = require( '../routing.json' ).redirect_logged_in 
+const fs        = require( 'fs/promises' ) 
+const path      = require( 'path' ) 
 
 /**
+ * backend/utils/render.js
+ * 
  * Renders pug templates for paths specified 
  * in the routing configuration, and evaluates 
  * variables passed to the views 
  */
-module.exports = function( view, req, res ) {
-
-	let url  = req.originalUrl.split( '?' )[ 0 ] 
-
-	for( let x in redirects ) {
-		if( url === redirects[ x ] && req.session.user ) 
-			return res.redirect( '/' ) 
-	}
-
-	/*
-		EVALUATE IF A PASSWORD RESET TOKEN
-		IS CORRECT HERE, 'validResetToken' 
-		NEEDS TO BE PASSED TO THE RENDERER
-	*/ 
+module.exports = async function( view, req, res ) {
 
 	let data = {
-		  loginPage: ( url === '/login' ),
-		profilePage: ( url === '/profile' )  
-	}
+		loginPage: res.locals.url === '/login',
+	  profilePage: res.locals.url === '/profile', 
+	   validToken: res.locals.validToken  
+  	}
 
 	if( req.session.user ) {
 		data.username = req.session.user.username

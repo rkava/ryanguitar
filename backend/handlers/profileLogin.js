@@ -1,6 +1,4 @@
-const exists = require( '../utils/exists' ) 
 const hash   = require( '../utils/hash' ) 
-const fs 	 = require( 'fs/promises' )
 
 /**
  * backend/handlers/login.js 
@@ -15,14 +13,12 @@ module.exports = async function( req, res ) {
 	if( !res.locals.profile.exists ) {
 
 		return res.status( 400 ).send({
-			status: 400, message: 'user not found'
+			status: 400, message: 'No such user'
 		})
 	
 	}
 
-	let data = await fs.readFile( res.locals.profile.path )
-
-	data = JSON.parse( data ) 
+	let data = require( res.locals.profile.path )
 
 	let password = hash( req.query.password, data.iterations ) 
 
@@ -35,13 +31,13 @@ module.exports = async function( req, res ) {
 		req.session.save() 
 
 		return res.status( 200 ).send({
-			status: 200, message: 'login successful' 
+			status: 200, message: 'Login successful' 
 		})
 
 	} else {
 
 		return res.status( 400 ).send({
-			status: 400, message: 'invalid password' 
+			status: 400, message: 'Invalid password' 
 		})
 	
 	}

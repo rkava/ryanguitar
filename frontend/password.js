@@ -3,31 +3,76 @@ import notification from "./utils/notification"
 
 window.onload = function() {
 
-	//perform some logic here relating to checking if there's a 
-	//parameter on the url with name 'token', and directing 
-	//the execution accordingly 
+	let path = window.location.pathname 
 
-	document.getElementById( 'submit-change' ).onclick = submitChange
-	document.addEventListener( 'keyup', keyUp )
+	if( path === '/password/change' ) requestChange() 
+
+	if( path === '/password/confirm' ) confirmChange() 
 }
 
-const keyUp = event => { if( event.code === 'Enter' ) submitChange() }
 
-function submitChange() {
+function requestChange() {
 
-	let username = document.getElementById( 'username-change' ).value
-	let email    = document.getElementById( 'email-change' ).value 
+	global.keyup = e => {  if( e.code === 'Enter' ) submitRequest() }
+
+	document.getElementById( 'submit-request' ).onclick = submitRequest
+	document.addEventListener( 'keyup', keyup )
+}
+
+function confirmChange() {
+
+	global.keyup = e => { if( e.code === 'Enter' ) submitConfirm() }
+
+	document.getElementById( 'submit-confirm' ).onclick = submitConfirm
+	document.addEventListener( 'keyup', keyup )
+}
+
+
+function submitRequest() {
+
+	let username = document.getElementById( 'username-request' ).value
+	let email    = document.getElementById( 'email-request' ).value 
 
 	if( !username || !email ) 
 		return notification( 'error', 'Please fill in both fields' )
 
 	fetch( '/api/password/request' + 
-		'?username=' + username +
-		'&email=' + email 	
+		'?username=' + username    +
+		'&email='    + email 	
 	)
 	.then( r => r.json() ) 
 	.then( d => d.status === 200 ? 
 		notification( 'success', 'Password reset link sent' ) :
+		notification( 'error', d.message ) 
+	)
+
+}
+
+
+function submitConfirm() {
+
+	const params = new URLSearchParams( window.location.search ) 
+
+	let password = document.getElementById( 'password-change'  ).value
+	let confirm  = document.getElementById( 'password-confirm' ).value 
+	let token    = params.get( 'token' ) 
+	let username = params.get( 'username' ) 
+
+	if( !password || !confirm ) 
+		return notification( 'error', 'Please fill in both fields' )
+
+	if( password !== confirm ) 
+		return notification( 'error', 'Passwords do not match' )
+
+	fetch( '/api/password/change' + 
+		'?password=' + password   +
+		'&confirm='  + confirm    + 
+		'&token='    + token      + 
+		'&username=' + username  
+	)
+	.then( r => r.json() ) 
+	.then( d => d.status === 200 ? 
+		window.location.replace( '/' ) :
 		notification( 'error', d.message ) 
 	)
 

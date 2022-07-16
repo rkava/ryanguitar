@@ -1,10 +1,12 @@
 doctype html 
 html(lang='en') 
-	include head.pug
-	script(src="scripts/admin.min.js")
+	head
+		title Admin control panel
+		link( rel="stylesheet", href="/styles/classes.css")
+		script(src="scripts/admin.min.js")
 	body 
 		div(class='container')
-			include topbar.pug
+			include includes/topbar.pug
 			span(style='color: gray; font-size: 30px') Admin control panel
 
 

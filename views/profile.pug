@@ -1,8 +1,10 @@
 doctype html 
 html(lang='en')
-	include head.pug
-	script(src="/scripts/profile.min.js")
+	head
+		title #{name}'s profile
+		link( rel="stylesheet", href="/styles/classes.css")
+		script(src="/scripts/profile.min.js")
 	body
 		div( class='container' )
-			include topbar.pug  
-			h1 Profile page
+			include includes/topbar.pug  
+			h3 #{name}'s profile

@@ -1,0 +1,22 @@
+div(class='header')
+ 
+	span
+		a(href='/' style='text-decoration: none; color: white;') 
+			| #[b Ryan's Guitar Stuff]
+
+	div(class='account-options') 
+
+		if loginPage 
+			span(style='color: var(--secondary)') sign in
+		else if profilePage 
+			span(style='color: var(--secondary)') profile
+			span(class='vertical-divider') |
+			a(href='/api/logout') sign out
+		else if loggedIn 
+			a(href='/profile') profile
+			span(class='vertical-divider') |
+			a(href='api/logout') sign out
+		else
+			a(href='/login' class="") sign in
+
+div(class='divider')

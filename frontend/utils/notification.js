@@ -8,7 +8,7 @@ export default function notification( type, message ) {
 		'var(--error)' :
 		'var(--success)'
 
-	document.removeEventListener( 'keyup', keyUp ) 
+	document.removeEventListener( 'keyup', keyup ) 
 
 	box.innerHTML  = message 
 	button.onclick = undefined

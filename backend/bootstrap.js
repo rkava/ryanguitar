@@ -1,5 +1,6 @@
 const routing  = require( './routing.json' )
 const validate = require( './utils/validate' )
+const redirect = require( './utils/redirect' ) 
 const render   = require( './utils/render' )
 const limiter  = require( 'express-rate-limit' ) 
 const session  = require( 'express-session' ) 
@@ -16,12 +17,11 @@ require( 'dotenv' ).config()
 const key  = fs.readFileSync( process.env.HTTPS_KEY ) 
 const cert = fs.readFileSync( process.env.HTTPS_CERT )
 
-
 const sessionSettings = {
 	cookie: { maxAge: 2629800000 },
 	secret: process.env.SESSION_SECRET,
 	resave: false,
-	saveUninitialized: true, 
+	saveUninitialized: true
 }
 
 const limiterSettings = {
@@ -31,13 +31,20 @@ const limiterSettings = {
 	  legacyHeaders: false
 }
 
-app.use( validate )
+
 app.use( cookies() ) 
 app.use( parser.json() ) 
 app.use( express.static( 'public' ) )
 app.use( session( sessionSettings ) )
 app.use( limiter( limiterSettings ) )
+app.use( validate )
+app.use( redirect ) 
 
+
+app.use( ( req, res, next ) => {
+	req.socket.setNoDelay( true )
+	next()
+})
 
 app.all( '*', ( req, res, next ) => 
 	req.secure ? next() : 

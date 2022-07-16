@@ -21,7 +21,37 @@ module.exports = {
 	},
 	
 	plugins: [
-		new obfuscate( { rotateStringArray: true, reservedStrings: [ '\s*' ] }, [] )
+		new obfuscate( { 
+			rotateStringArray: true, 
+			reservedStrings: [ '\s*' ],
+			compact: true,
+			controlFlowFlattening: true,
+			controlFlowFlatteningThreshold: 1,
+			debugProtection: false,
+			debugProtectionInterval: 4000,
+			disableConsoleOutput: false,
+			identifierNamesGenerator: 'hexadecimal',
+			log: false,
+			numbersToExpressions: true,
+			renameGlobals: false,
+			selfDefending: true,
+			simplify: true,
+			splitStrings: true,
+			splitStringsChunkLength: 5,
+			stringArray: true,
+			stringArrayCallsTransform: true,
+			stringArrayEncoding: ['rc4'],
+			stringArrayIndexShift: true,
+			stringArrayRotate: true,
+			stringArrayShuffle: true,
+			stringArrayWrappersCount: 5,
+			stringArrayWrappersChainedCalls: true,    
+			stringArrayWrappersParametersMaxCount: 5,
+			stringArrayWrappersType: 'function',
+			stringArrayThreshold: 1,
+			transformObjectKeys: true,
+			unicodeEscapeSequence: false
+		}, [] )
 	],
 
 	module: {
@@ -35,17 +65,7 @@ module.exports = {
 						presets: ['@babel/preset-env']
 					}
 				}
-			},
-			{
-				enforce: 'post',
-				use: {
-					loader: obfuscate.loader,
-					options: {
-						rotateStringArray: true,
-						reservedStrings: [ '\s*' ]
-					}
-				}
-			}	
+			}
 		]
 	}
 }

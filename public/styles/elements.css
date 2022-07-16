@@ -10,7 +10,6 @@
 html {
 	background-color: var(--background);
 	font-size: 25px;
-	padding: 20px; 
 }
 
 *::-webkit-scrollbar {
@@ -35,9 +34,9 @@ textarea:focus {
 
 input {
 	padding: 8px;
-	font-size: 20px;
+	font-size: 18px;
 	background-color: var(--secondary);
-	min-height: 40px;
+	min-height: 30px;
 	border-radius: 7px;
 	border: 0px solid;
 	box-shadow: inset 0px 0px 5px rgba(0,0,0,0.2);
@@ -68,4 +67,8 @@ a {
 a:hover {
 	color: var(--link-hover);
 	text-decoration: underline;
+}
+
+ul {
+	margin: 5px;
 }

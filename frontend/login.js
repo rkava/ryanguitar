@@ -1,12 +1,17 @@
 import notification from "./utils/notification"
 
+
 window.onload = function() {
 
     document.getElementById( 'submit-login' ).onclick = submitLogin 
-	document.addEventListener( 'keyup', keyUp )
+	document.addEventListener( 'keyup', keyup )
 }
 
-const keyUp = event => { if( event.code === 'Enter' ) submitLogin() }
+
+global.keyup = function( event ) { 
+	if( event.code === 'Enter' ) submitLogin() 
+}
+
 
 function submitLogin() { 
 
@@ -22,7 +27,7 @@ function submitLogin() {
 	)
 	.then( r => r.json() ) 
 	.then( d => d.status === 200 ? 
-		window.location.replace( '/' ) :
+		window.location.replace( '/profile' ) :
 		notification( 'error', d.message )
 	)
 

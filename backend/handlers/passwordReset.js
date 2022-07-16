@@ -13,15 +13,12 @@ module.exports = async function( req, res ) {
 
 	if( !res.locals.profile.exists ) {
 		return res.status( 400 ).send( 
-			{ status: 400, message: 'no such user' }
+			{ status: 400, message: 'User not found' }
 		)
 	} 
 
     try {
-
-		let data = await fs.readFile( res.locals.profile.path )
-
-		data = JSON.parse( data ) 
+		let data = await fs.readFile( res.locals.profile.path, 'utf8' )
 
         data.iterations = Math.floor( ( Math.random() * 100 ) + 30 ) 
         data.password   = hash( user, data.iterations ) 
@@ -29,7 +26,7 @@ module.exports = async function( req, res ) {
 		await fs.writeFile( res.locals.profile.path, JSON.stringify( data ) )
 
 		return res.status( 200 ).send(
-			{ status: 200, message: 'password reset successfully' }
+			{ status: 200, message: 'Password reset successfully' }
 		)
 
 	} catch( e ) {

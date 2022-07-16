@@ -14,17 +14,15 @@ module.exports = async function( req, res ) {
 
 	if( !res.locals.profile.exists ) {
 		return res.status( 400 ).send( 
-			{ status: 400, message: 'specified user does not exist' } 
+			{ status: 400, message: 'User not found' } 
 		) 
 	} 
 
 	try {		
 		
-		let data = await fs.readFile( res.locals.profile.path )
-
-		data = JSON.parse( data ) 
-
-		data.messages.push({ 
+		let data = require( res.locals.profile.path )
+		
+		data.messages.unshift({ 
 			message: message,
 			date: new Date().toLocaleDateString( 'en-gb' ) 
 		})
@@ -32,7 +30,7 @@ module.exports = async function( req, res ) {
 		await fs.writeFile( res.locals.profile.path, JSON.stringify( data ) )
 
 		return res.status( 200 ).send(
-			{ status: 200, message: 'profile updated successfully' }
+			{ status: 200, message: 'Profile updated successfully' }
 		)
 
 	} catch( e ) {

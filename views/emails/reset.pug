@@ -1,0 +1,24 @@
+doctype html
+html(lang='en')
+	head 
+		style.
+			@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300&family=Roboto+Mono:wght@300&family=Roboto:wght@300&family=Source+Sans+Pro:wght@600&display=swap');
+			
+			* { font-family: 'Nunito Sans', sans-serif; }
+			a { font-weight: bold; }
+
+			#body     { font-size: 18px; }
+			#footer   { font-size: 14px; }  
+			#greeting { 
+				font-size: 23px; 
+				margin-bottom: 15px;
+			}
+			
+	body
+		br
+		div(id='greeting') Hi #{ name },
+		div(id='body')
+			span Click #[a(href=url) here] to reset your password. #[br]
+			span Respond to this email if you didn't request a password reset.
+		br
+		div(id='footer') Automated email sent by ryanguitar.uk

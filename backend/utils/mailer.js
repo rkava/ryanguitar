@@ -9,7 +9,7 @@ module.exports = function( to, subject, content ) {
 		service: 'gmail',
 		auth: {
 			type: 'OAuth2',
-			user: 		  process.env.EMAIL_ADDRESS, 
+			user: 	      process.env.EMAIL_ADDRESS, 
 			clientId:     process.env.GOOGLE_ID,
 			clientSecret: process.env.GOOGLE_SECRET,
 			refreshToken: process.env.GOOGLE_REFRESH,
@@ -19,7 +19,7 @@ module.exports = function( to, subject, content ) {
 
 	transport.sendMail( {
 
-		from: process.env.EMAIL_ADDRESS,
+		from: `ryanguitar.uk <${process.env.EMAIL_ADDRESS}>`,
 		subject: subject,
 		html: content,		
 		to: to
